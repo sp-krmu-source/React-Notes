@@ -1908,6 +1908,257 @@ export default Function
 ```
 
 
+
+---
+
+### 🔹 1) Counter App (Cart Quantity)
+
+#### 🛒 Real life: Add items in cart
+
+```jsx
+import { useState } from "react";
+
+function App() {
+  const [quantity, setQuantity] = useState(1);
+
+  return (
+    <div>
+      <h1>Cart Quantity: {quantity}</h1>
+      <button onClick={() => setQuantity(quantity + 1)}>Add</button>
+      <button onClick={() => setQuantity(quantity - 1)}>Remove</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+#### ✅ Concept
+
+* Basic state update
+* Real e-commerce use case
+
+---
+
+### 🔹 2) Show / Hide Password
+
+## 🔐 Real life: Login form
+
+```jsx
+import { useState } from "react";
+
+function App() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div>
+      <input type={showPassword ? "text" : "password"} />
+      <button onClick={() => setShowPassword(!showPassword)}>
+        {showPassword ? "Hide" : "Show"}
+      </button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### ✅ Concept
+
+* Boolean state
+* Toggle logic
+
+---
+
+# 🔹 3) Dark / Light Theme Toggle
+
+## 🌙 Real life: Website theme switcher
+
+```jsx
+import { useState } from "react";
+
+function App() {
+  const [dark, setDark] = useState(false);
+
+  return (
+    <div
+      style={{
+        background: dark ? "black" : "white",
+        color: dark ? "white" : "black",
+        minHeight: "100vh",
+      }}
+    >
+      <h1>{dark ? "Dark Mode" : "Light Mode"}</h1>
+      <button onClick={() => setDark(!dark)}>Toggle Theme</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### ✅ Concept
+
+* UI changes based on state
+* Real product use case
+
+---
+
+# 🔹 4) Form Input Handling
+
+## 📝 Real life: Name input form
+
+```jsx
+import { useState } from "react";
+
+function App() {
+  const [name, setName] = useState("");
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Enter name"
+        onChange={(e) => setName(e.target.value)}
+      />
+      <h2>Hello, {name}</h2>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### ✅ Concept
+
+* Controlled components
+* Form handling
+
+---
+
+# 🔹 5) To-Do List
+
+## ✅ Real life: Daily task manager
+
+```jsx
+import { useState } from "react";
+
+function App() {
+  const [task, setTask] = useState("");
+  const [list, setList] = useState([]);
+
+  const addTask = () => {
+    setList([...list, task]);
+    setTask("");
+  };
+
+  return (
+    <div>
+      <input
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+      />
+      <button onClick={addTask}>Add Task</button>
+
+      {list.map((item, index) => (
+        <p key={index}>{item}</p>
+      ))}
+    </div>
+  );
+}
+
+export default App;
+```
+
+### ✅ Concept
+
+* Array state
+* Add new items
+* Most common interview question
+
+---
+
+# 🔹 6) Like Button
+
+## ❤️ Real life: Instagram / LinkedIn post
+
+```jsx
+import { useState } from "react";
+
+function App() {
+  const [liked, setLiked] = useState(false);
+
+  return (
+    <div>
+      <button onClick={() => setLiked(!liked)}>
+        {liked ? "❤️ Liked" : "🤍 Like"}
+      </button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### ✅ Concept
+
+* Social media use case
+* Toggle UI
+
+---
+
+# 🔹 7) Notification Counter
+
+## 🔔 Real life: Bell icon count
+
+```jsx
+import { useState } from "react";
+
+function App() {
+  const [notifications, setNotifications] = useState(0);
+
+  return (
+    <div>
+      <h1>Notifications: {notifications}</h1>
+      <button onClick={() => setNotifications(notifications + 1)}>
+        New Notification
+      </button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+---
+
+# 🔹 8) Add to Wishlist
+
+## ⭐ Real life: Shopping app
+
+```jsx
+import { useState } from "react";
+
+function App() {
+  const [wishlist, setWishlist] = useState([]);
+
+  const addItem = () => {
+    setWishlist([...wishlist, "iPhone"]);
+  };
+
+  return (
+    <div>
+      <button onClick={addItem}>Add to Wishlist</button>
+      <h2>Total Items: {wishlist.length}</h2>
+    </div>
+  );
+}
+
+export default App;
+```
+
+---
+
 ## useEffect
 **->** The Effect Hook allows us to perform side effects (an action) in the function components. It does not use components lifecycle methods which are available in class components.
 
