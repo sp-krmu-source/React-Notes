@@ -1670,15 +1670,9 @@ It pools the event already done hence improving the performance.
 
 Note: **Here ‘e’ is a synthetic event**, a cross-browser object. It is made with a wrapper around the actual event of the browser. 
 
-
-Perfect 👍
-This is one of the **most important React topics for beginners**.
-
-I’ll teach it from **absolute beginning → form data handling → validation using `useState`** in a **very easy classroom style**.
-
 ---
 
-# 🚀 1) What is form handling in React?
+## What is form handling in React?
 
 Form handling means managing data from:
 
@@ -1702,7 +1696,7 @@ That means:
 
 ---
 
-# ✅ 2) Basic single input form handling
+### Basic single input form handling
 
 Start with only **one input**.
 
@@ -1735,9 +1729,9 @@ export default App;
 
 ---
 
-## ✅ How this works
+### ✅ How this works
 
-### Step 1 → state stores value
+#### Step 1 → state stores value
 
 ```jsx
 const [name, setName] = useState("");
@@ -1745,7 +1739,7 @@ const [name, setName] = useState("");
 
 ---
 
-### Step 2 → user types
+#### Step 2 → user types
 
 ```jsx
 onChange={handleChange}
@@ -1753,7 +1747,7 @@ onChange={handleChange}
 
 ---
 
-### Step 3 → save in state
+#### Step 3 → save in state
 
 ```jsx
 setName(e.target.value);
@@ -1763,7 +1757,7 @@ setName(e.target.value);
 
 ---
 
-# ✅ 3) Multiple input form handling (MOST IMPORTANT)
+## Multiple input form handling (MOST IMPORTANT)
 
 Real projects use multiple inputs.
 
@@ -1830,7 +1824,7 @@ export default App;
 
 ---
 
-# 🔥 4) Most important line
+#### Most important line
 
 This line is the heart of form handling:
 
@@ -1841,7 +1835,7 @@ setFormData({
 });
 ```
 
-## Easy meaning
+#### Easy meaning
 
 Suppose user types in email field.
 
@@ -1862,7 +1856,7 @@ So only that field updates.
 
 ---
 
-# ✅ 5) Form submit handling
+#### Form submit handling
 
 Now learn submit.
 
@@ -1890,7 +1884,7 @@ Full example:
 
 ---
 
-# 🚀 6) Form validation using useState
+## Form validation using useState
 
 Now validation.
 
@@ -1902,7 +1896,7 @@ We check:
 
 ---
 
-## ✅ Easy validation example
+### Easy validation example
 
 ```jsx
 import { useState } from "react";
@@ -1985,39 +1979,7 @@ export default App;
 
 ---
 
-# 🎯 7) Validation logic easy explanation
-
-### Name validation
-
-```jsx
-if (formData.name === "")
-```
-
-Check empty input
-
----
-
-### Email validation
-
-```jsx
-if (!formData.email.includes("@"))
-```
-
-Check email format
-
----
-
-### Password validation
-
-```jsx
-if (formData.password.length < 6)
-```
-
-Check minimum length
-
----
-
-# ✅ 8) Why errors state?
+#### Why errors state?
 
 We use:
 
@@ -2042,7 +2004,7 @@ Then show:
 
 ---
 
-# 💡 9) Best interview answer
+### Best interview answer
 
 If someone asks:
 
@@ -2055,7 +2017,7 @@ Say:
 
 ---
 
-# ✅ 10) Real project best practice
+### Real project best practice
 
 For students teach this rule:
 
@@ -2066,9 +2028,9 @@ This is industry standard.
 
 ---
 
-# ✅ Example of form submission
+## Example of form submission
 
-```jsx id="q9w3c2"
+```javascript
 import { useState } from "react";
 
 function App() {
@@ -2153,19 +2115,19 @@ export default App;
 
 ---
 
-# ✅ How this works (easy explanation)
+### ✅ How this works (easy explanation)
 
-## 🟢 1) `formData`
+#### 🟢 1) `formData`
 
 Stores current input values.
 
-```jsx id="k7n4d1"
+```javascript
 const [formData, setFormData] = useState(...)
 ```
 
 Example while typing:
 
-```js id="0mu4m0"
+```javascript
 {
   name: "SP",
   email: "sp@gmail.com",
@@ -2175,11 +2137,11 @@ Example while typing:
 
 ---
 
-## 🟢 2) `submittedData`
+#### 🟢 2) `submittedData`
 
 Stores final submitted values.
 
-```jsx id="17i1c2"
+```javascript
 const [submittedData, setSubmittedData] = useState(null);
 ```
 
@@ -2187,9 +2149,9 @@ This is what we show below button.
 
 ---
 
-## 🟢 3) On submit
+#### 🟢 3) On submit
 
-```jsx id="ehbxr8"
+```javascript
 setSubmittedData(formData);
 ```
 
@@ -2197,17 +2159,15 @@ Copies current form values into submitted data.
 
 ---
 
-## 🟢 4) Render below button
+#### 🟢 4) Render below button
 
-```jsx id="u0b4v0"
+```javascript
 {submittedData && (...) }
 ```
 
 Means:
 
 > show only after submit
-
-
 
 
 
