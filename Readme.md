@@ -53,12 +53,13 @@
 8.  Events Handling events in react 
       * Synthetic events
       * React event handler
-9. [Higher Order Compoent](#higher-order-compoent)
+      * [Form handling](#form-handling)
+9. [Higher Order Component](#higher-order-component)
 
 10. HOOKS
 
       * [UseState](#usestate)
-      * useEffect
+      * [useEffect](#useeffect)
       * useRef
       * React.memo()
       * [useMemo](#usememo)
@@ -1672,7 +1673,7 @@ Note: **Here ‘e’ is a synthetic event**, a cross-browser object. It is made 
 
 ---
 
-## What is form handling in React?
+## Form handling
 
 Form handling means managing data from:
 
@@ -2170,7 +2171,6 @@ Means:
 > show only after submit
 
 
-
 # Pure Component
 
 Pure components in React are a type of component that only re-renders when its props or state change. They are also referred to as “stateless components” or “dumb components”. Pure components are a way to optimize the performance of your React application by reducing unnecessary re-renders.
@@ -2411,9 +2411,9 @@ export default Function
 
 ---
 
-### 🔹 1) Counter App (Cart Quantity)
+###  1) Counter App (Cart Quantity)
 
-#### 🛒 Real life: Add items in cart
+####  Real life: Add items in cart
 
 ```jsx
 import { useState } from "react";
@@ -2440,9 +2440,9 @@ export default App;
 
 ---
 
-### 🔹 2) Show / Hide Password
+###  2) Show / Hide Password
 
-## 🔐 Real life: Login form
+####  Real life: Login form
 
 ```jsx
 import { useState } from "react";
@@ -2470,9 +2470,9 @@ export default App;
 
 ---
 
-# 🔹 3) Dark / Light Theme Toggle
+###  3) Dark / Light Theme Toggle
 
-## 🌙 Real life: Website theme switcher
+####  Real life: Website theme switcher
 
 ```jsx
 import { useState } from "react";
@@ -2504,9 +2504,9 @@ export default App;
 
 ---
 
-# 🔹 4) Form Input Handling
+###  4) Form Input Handling
 
-## 📝 Real life: Name input form
+####  Real life: Name input form
 
 ```jsx
 import { useState } from "react";
@@ -2536,9 +2536,9 @@ export default App;
 
 ---
 
-# 🔹 5) To-Do List
+###  5) To-Do List
 
-## ✅ Real life: Daily task manager
+#### Real life: Daily task manager
 
 ```jsx
 import { useState } from "react";
@@ -2578,9 +2578,9 @@ export default App;
 
 ---
 
-# 🔹 6) Like Button
+### 6) Like Button
 
-## ❤️ Real life: Instagram / LinkedIn post
+####  Real life: Instagram / LinkedIn post
 
 ```jsx
 import { useState } from "react";
@@ -2607,9 +2607,9 @@ export default App;
 
 ---
 
-# 🔹 7) Notification Counter
+### 7) Notification Counter
 
-## 🔔 Real life: Bell icon count
+####  Real life: Bell icon count
 
 ```jsx
 import { useState } from "react";
@@ -2632,9 +2632,9 @@ export default App;
 
 ---
 
-# 🔹 8) Add to Wishlist
+###  8) Add to Wishlist
 
-## ⭐ Real life: Shopping app
+####  Real life: Shopping app
 
 ```jsx
 import { useState } from "react";
