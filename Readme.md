@@ -5304,31 +5304,25 @@ Same output but this time instead of passing data through each level, It is dire
 
 
 
-//MovieContext.js
 
-```javascript
-import React from 'react';
-
-const MovieContext = React.createContext();
-
-export default MovieContext;
-```
 //MovieProvider.js
 
 ```javascript
 import React, { useState } from 'react';
-import MovieContext from './MovieContext';
 
-const MovieProvider = (props) => {
+
+export const MovieContext = React.createContext();
+
+const MovieProvider = ({children}) => {
   const [movies, setMovies] = useState([
-    { name: "The Shawshank Redemption", image: "shawshank.jpg", rating: 9.3 },
-    { name: "The Godfather", image: "godfather.jpg", rating: 9.2 },
-    { name: "The Dark Knight", image: "darkknight.jpg", rating: 9.0 }
+    { name: "The Shawshank Redemption", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbbwp4RrTMdBjdnN2QHaMSoIA7SE-7n5BKSQ&s", rating: 9.3 },
+    { name: "The Godfather", image: "https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2QwZWQ2NjdhZTE5XkEyXkFqcGc@._V1_.jpg", rating: 9.2 },
+    { name: "The Dark Knight", image: "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg", rating: 9.0 }
   ]);
 
   return (
-    <MovieContext.Provider value={{ movies }}>
-      {props.children}
+    <MovieContext.Provider value={{movies}}>
+      {children}
     </MovieContext.Provider>
   );
 }
@@ -5339,7 +5333,7 @@ export default MovieProvider;
 
 ```javascript
 import React, { useContext } from 'react';
-import MovieContext from './MovieContext';
+import {MovieContext} from './MovieProvider';
 
 const MovieList = () => {
   const { movies } = useContext(MovieContext);
@@ -5348,9 +5342,10 @@ const MovieList = () => {
     <div>
       {movies.map(movie => (
         <div key={movie.name}>
-          <img src={movie.image} alt={movie.name} />
           <h2>{movie.name}</h2>
+          <img src={movie.image} alt={movie.name} width={300}/>
           <p>Rating: {movie.rating}</p>
+          <hr/>
         </div>
       ))}
     </div>
