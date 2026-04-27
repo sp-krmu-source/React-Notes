@@ -5192,76 +5192,110 @@ The problem with Prop Drilling is that whenever data from the Parent component w
 
 A better alternative to this is using useContext hook. The useContext hook is based on Context API and works on the mechanism of Provider and Consumer. Provider needs to wrap components inside Provider Components in which data have to be consumed. Then in those components, using the useContext hook that data needs to be consumed.
 
-// App.js
+### ✅ Correct Structure (Real Project Setup)
 
-```javascript
-import Parent from "./woUsecontext/Parent";
-  
-const App=()=> {
-  return (
-    <div className="App">
-      <Parent />
-    </div>
-  );
-}
-export default App
+### 📁 Folder Structure
+
+```bash
+src/
+ ├── context/
+ │     └── UserContext.jsx
+ ├── components/
+ │     ├── Parent.jsx
+ │     ├── ChildA.jsx
+ │     ├── ChildB.jsx
+ │     └── ChildC.jsx
 ```
-//Parent.js
 
-```javascript
-import React, { useState, useContext } from "react";
+---
 
-let context = React.createContext(null);
-function Parent() {
-const [fName, setfName] = useState("SP");
-const [lName, setlName] = useState("Acharya");
-return (
-	<context.Provider value={{ fName, lName }}>
-	<div>This is a Parent component</div>
-	<br />
-	<ChildA />
-	</context.Provider>
-);
-}
+### ✅ 1. Create Context File (IMPORTANT)
 
-function ChildA() {
-return (
-	<>
-	This is ChildA Component.
-	<br />
-	<ChildB />
-	</>
-);
-}
+📁 `context/UserContext.jsx`
 
-function ChildB() {
-return (
-	<>
-	This is ChildB Component.
-	<br />
-	<ChildC />
-	</>
-);
-}
+```jsx id="ctxfile"
+import { createContext } from "react";
 
-function ChildC() {
-const { fName, lName } = useContext(context);
-return (
-	<>
-	This is ChildC component.
-	<br />
-	<h3> Data from Parent component is as follows:</h3>
-	<h4>{fName}</h4>
-	<h4>{lName}</h4>
-	</>
-);
-}
+export const UserContext = createContext(null);
+```
+
+---
+
+### ✅ 2. Parent.jsx (Provider)
+
+```jsx id="parentfile"
+import React, { useState } from "react";
+import { UserContext } from "../context/UserContext";
+import ChildC from "./ChildC";
+
+const Parent = () => {
+  const [fName, setfName] = useState("SP");
+  const [lName, setlName] = useState("Acharya");
+
+  return (
+    <UserContext.Provider value={{ fName, lName }}>
+      <div>This is Parent</div>
+      <ChildC />
+    </UserContext.Provider>
+  );
+};
 
 export default Parent;
 ```
+
+---
+
+### ✅ 3. ChildC.jsx (Consumer)
+
+```jsx id="childcfile"
+import React, { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+
+const ChildC = () => {
+  const { fName, lName } = useContext(UserContext);
+
+  return (
+    <>
+      <h3>{fName}</h3>
+      <h3>{lName}</h3>
+    </>
+  );
+};
+
+export default ChildC;
+```
+
+---
+
+#### 🔥 That’s the ONLY Change
+
+👉 Instead of:
+
+```jsx
+useContext(Context)
+```
+
+👉 You now do:
+
+```jsx
+useContext(UserContext)
+```
+
+👉 And import it from one place
+
+---
+
+#### 🧠 Key Rule to Remember
+
+👉 **Context must be created ONCE and shared everywhere**
+
+---
+
 ![Alt text](a.png)
 
 Same output but this time instead of passing data through each level, It is directly consumed in the component required using useContext Hook.
+
+
 
 
 ## Dynamic Context Example 
