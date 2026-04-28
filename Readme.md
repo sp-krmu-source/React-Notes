@@ -5213,7 +5213,7 @@ src/
 
 📁 `context/UserContext.jsx`
 
-```jsx id="ctxfile"
+```javascript
 import { createContext } from "react";
 
 export const UserContext = createContext(null);
@@ -5223,7 +5223,7 @@ export const UserContext = createContext(null);
 
 ### ✅ 2. Parent.jsx (Provider)
 
-```jsx id="parentfile"
+```javascript
 import React, { useState } from "react";
 import { UserContext } from "../context/UserContext";
 import ChildC from "./ChildC";
@@ -5247,7 +5247,7 @@ export default Parent;
 
 ### ✅ 3. ChildC.jsx (Consumer)
 
-```jsx id="childcfile"
+```javascript
 import React, { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
