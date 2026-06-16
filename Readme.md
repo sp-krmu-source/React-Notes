@@ -2662,6 +2662,8 @@ export default App;
 ## useEffect
 **->** The Effect Hook allows us to perform side effects (an action) in the function components. It does not use components lifecycle methods which are available in class components.
 
+> side effects: is any operation that affects something outside of the scope of a function(pure function)
+
 **->** In other words, Effects Hooks are equivalent to componentDidMount(), componentDidUpdate(), and componentWillUnmount() lifecycle methods.
 
 **->** useEffect allows you to run side effects after the component has rendered, and also provides a way to clean up any side effects when the component is unmounted or updated. Here is an example of how to use useEffect:
@@ -2751,6 +2753,17 @@ useEffect(() => {
 ---
 
 #### ✅ 3. Cleanup (very important)
+When useEffect creates something that continues to exist after the render (an interval, event listener, WebSocket connection, etc.), React gives you a chance to clean it up
+
+Imagine you set an alarm before sleeping.
+```
+Setup:   Set alarm for 7:00 AM
+Cleanup: Cancel alarm if you no longer need it
+```
+If you don't cancel it, the alarm still rings.
+> Cleanup is the code that stops, removes, or disconnects anything your effect started.
+
+
 
 ```jsx
 useEffect(() => {
@@ -3260,26 +3273,59 @@ User types → value stored in DOM → React does nothing → value accessed onl
 ### 💻 4. Code Examples (Explain While Writing)
 
 ### 🔹 Controlled Component
+```javascript
+import React, { useState, useRef } from "react";
 
-```jsx id="controlledInterview"
-import React, { useState } from "react";
+const App = () => {
+  // Controlled state
+  const [value, setValue] = useState("");
+  const [show,setShow] = useState("")
+  console.log(value,"value")
 
-function ControlledForm() {
-  const [input, setInput] = useState("");
+  // Uncontrolled ref
+  const inputRef = useRef();
+  console.log(inputRef,"inputref")
+
+  // Render counter
+  const renderCount = useRef(0);
+  console.log(renderCount,"rendercount")
+  renderCount.current++;
 
   return (
-    <>
-      <input
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <p>{input}</p>
-    </>
+    <div style={{ padding: "20px" }}>
+      <h2>Render Count: {renderCount.current}</h2>
+
+      {/* Controlled Component */}
+      <div style={{ marginBottom: "20px" }}>
+        <h3>Controlled Input</h3>
+        <input
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Type here"
+        />
+        <p>Value: {value}</p>
+      </div>
+
+      {/* Uncontrolled Component */}
+      <div>
+        <h3>Uncontrolled Input</h3>
+        <input ref={inputRef} placeholder="Type here" />
+        <button
+          onClick={() => setShow(inputRef.current.value)}
+        >
+          Show Value
+        </button>
+        {show}
+      </div>
+    </div>
   );
-}
+};
+
+export default App;
+
 ```
 
-#### 🧠 Explain:
+#### 🧠 In Controlled Component:
 
 * Value is bound to state
 * React controls input
@@ -3287,28 +3333,7 @@ function ControlledForm() {
 
 ---
 
-### 🔹 Uncontrolled Component
-
-```jsx id="uncontrolledInterview"
-import React, { useRef } from "react";
-
-function UncontrolledForm() {
-  const inputRef = useRef();
-
-  const handleSubmit = () => {
-    console.log(inputRef.current.value);
-  };
-
-  return (
-    <>
-      <input ref={inputRef} />
-      <button onClick={handleSubmit}>Submit</button>
-    </>
-  );
-}
-```
-
-#### 🧠 Explain:
+#### 🧠 In Uncontrolled Component:
 
 * No state used
 * Value stored in DOM
